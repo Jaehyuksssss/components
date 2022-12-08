@@ -8,8 +8,6 @@ export interface Props {
 }
 const Home = () => {
   const [openModal, setOpenModal] = useState<any>(false)
-  const [date, setDate] = useState(new Date())
-
   const showModal = () => {
     setOpenModal(true)
   }
@@ -19,20 +17,35 @@ const Home = () => {
   const todayMonth = today.getMonth()
   const todayYear = today.getFullYear()
   const todayDate = today.getDate()
-  console.log(todayMonth)
+
+  const DAY = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
+  ]
 
   return (
     <Container>
       {openModal === false ? (
         <Contents>
           <DateStyle>
-            <Box fontSize={'50px'}>{todayDate}</Box>
-            <Flex direction={'column'} marginLeft={'10px'}>
-              <Box fontSize={'15px'}>{todayMonth + 1}</Box>
-              <Box fontSize={'15px'}>{todayYear}</Box>
+            <Flex alignItems={'center'}>
+              <Box fontStyle={'OpenSans'} fontSize={'40px'}>
+                {todayDate}
+              </Box>
+              <Flex direction={'column'} marginLeft={'10px'}>
+                <Box fontStyle={'OpenSans'} fontSize={'15px'}>
+                  {String(today).split(' ')[1]}
+                </Box>
+                <Box fontSize={'15px'}>{todayYear}</Box>
+              </Flex>
             </Flex>
+            <Box fontSize={'15px'}>{DAY[todayDay - 1]}</Box>
           </DateStyle>
-
           <PlusBtn onClick={showModal} src="/img/button.png" alt="왜 안나옴" />
           {openModal && <AddModal setOpenModal={setOpenModal} />}
         </Contents>
@@ -57,10 +70,10 @@ const DateStyle = styled.div`
   position: absolute;
   display: flex;
   height: 100px;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   top: 20%;
-  right: 50%;
+  width: 39%;
 `
 
 const Contents = styled.div`
