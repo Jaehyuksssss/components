@@ -1,28 +1,13 @@
-import { useState } from 'react'
-import NewTodo from './components/NewTodo'
-import Todolist from './components/Todolist'
-import { Todo } from './todo.model'
+import Home from './Home'
+import styled from 'styled-components'
 
 const App: React.FC = () => {
-  const [todos, setTodos] = useState<Todo[]>([])
-
-  const todoAddHandler = (text: string) => {
-    setTodos((prevTodos) => [
-      ...prevTodos,
-      { id: Math.random().toString(), text: text },
-    ])
-  }
-  const todoDeleteHandler = (todoId: string) => {
-    setTodos((prevTodos) => {
-      return prevTodos.filter((todo) => todo.id !== todoId)
-    })
-  }
   return (
-    <div className="App">
-      <NewTodo onAddTodo={todoAddHandler} />
-      <Todolist items={todos} onDeleteTodo={todoDeleteHandler} />
-    </div>
+    <Container>
+      <Home />
+    </Container>
   )
 }
 
 export default App
+const Container = styled.div``

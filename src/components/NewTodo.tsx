@@ -18,11 +18,11 @@ const NewTodo: React.FC<NewTodoProps> = (props) => {
   return (
     <form onSubmit={todoSubmitHandler}>
       <div>
-        <label htmlFor="todo-text">Todo Text</label>
         <input type="text" id="todo-text" ref={textInputRef} />
+        <button type="submit">ADD TODO</button>
       </div>
-      <button type="submit">ADD TODO</button>
     </form>
   )
 }
 export default NewTodo
+
