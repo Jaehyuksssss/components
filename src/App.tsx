@@ -10,4 +10,6 @@ const App: React.FC = () => {
 }
 
 export default App
-const Container = styled.div``
+const Container = styled.div`
+  background: #eaeaea;
+`
