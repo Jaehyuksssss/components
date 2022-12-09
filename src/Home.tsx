@@ -14,7 +14,6 @@ const Home = () => {
 
   const today = new Date()
   const todayDay = today.getDay()
-  const todayMonth = today.getMonth()
   const todayYear = today.getFullYear()
   const todayDate = today.getDate()
 

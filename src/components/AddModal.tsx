@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import { Todo } from '../todo.model'
 import NewTodo from './NewTodo'
 import Todolist from './Todolist'
-import { Props } from '../Home'
+import { useDispatch } from 'react-redux'
 
 const AddModal = ({ setOpenModal }: any) => {
   const [todos, setTodos] = useState<Todo[]>([])
+  const dispatch = useDispatch()
 
   const todoAddHandler = (text: string) => {
     setTodos((prevTodos) => [
@@ -14,6 +15,7 @@ const AddModal = ({ setOpenModal }: any) => {
       { id: Math.random().toString(), text: text },
     ])
   }
+  console.log(todos)
   const todoDeleteHandler = (todoId: string) => {
     setTodos((prevTodos) => {
       return prevTodos.filter((todo) => todo.id !== todoId)
