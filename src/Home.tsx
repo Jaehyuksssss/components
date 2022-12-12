@@ -1,5 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import AddModal from './components/AddModal'
 
@@ -7,10 +7,11 @@ export interface Props {
   openModal: boolean
 }
 const Home = () => {
-  const [openModal, setOpenModal] = useState<any>(false)
-  const showModal = () => {
-    setOpenModal(true)
-  }
+  const [openModal, setOpenModal] = useState<boolean>(false)
+  const showModal = useCallback(() => {
+    console.log(openModal)
+    setOpenModal(!openModal)
+  }, [openModal])
 
   const today = new Date()
   const todayDay = today.getDay()

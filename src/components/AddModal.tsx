@@ -41,6 +41,7 @@ export default AddModal
 
 const ModalContainer = styled.div`
   height: 100%;
+  
   display: flex;
   justify-content: center;
   flex-direction: column;
