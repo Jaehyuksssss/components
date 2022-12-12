@@ -8,7 +8,8 @@ export interface Props {
 }
 const Home = () => {
   const [openModal, setOpenModal] = useState<boolean>(false)
-  const showModal = useCallback(() => {
+
+  const onClickModal = useCallback(() => {
     console.log(openModal)
     setOpenModal(!openModal)
   }, [openModal])
@@ -19,13 +20,13 @@ const Home = () => {
   const todayDate = today.getDate()
 
   const DAY = [
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday',
+    'MONDAY',
+    'TUESDAY',
+    'WEDNESDAY',
+    'THURSDAY',
+    'FRIDAY',
+    'SATURDAY',
+    'SUNDAY',
   ]
 
   return (
@@ -46,12 +47,16 @@ const Home = () => {
             </Flex>
             <Box fontSize={'15px'}>{DAY[todayDay - 1]}</Box>
           </DateStyle>
-          <PlusBtn onClick={showModal} src="/img/button.png" alt="왜 안나옴" />
-          {openModal && <AddModal setOpenModal={setOpenModal} />}
+          <PlusBtn
+            onClick={onClickModal}
+            src="/img/button.png"
+            alt="왜 안나옴"
+          />
+          {openModal && <AddModal onClickModal={onClickModal} todos={false} />}
         </Contents>
       ) : (
         <AddSchedule>
-          <AddModal setOpenModal={setOpenModal} />
+          <AddModal onClickModal={onClickModal} todos={false} />
         </AddSchedule>
       )}
     </Container>

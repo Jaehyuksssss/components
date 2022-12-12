@@ -1,38 +1,41 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { Todo } from '../todo.model'
-import NewTodo from './NewTodo'
-import Todolist from './Todolist'
-import { useDispatch } from 'react-redux'
 
-const AddModal = ({ setOpenModal }: any) => {
-  const [todos, setTodos] = useState<Todo[]>([])
-  const dispatch = useDispatch()
-
-  const todoAddHandler = (text: string) => {
-    setTodos((prevTodos) => [
-      ...prevTodos,
-      { id: Math.random().toString(), text: text },
-    ])
-  }
+export interface TodosProps {
+  todos: boolean
+  onClickModal: () => void
+}
+const AddModal = ({ onClickModal }: TodosProps) => {
+  const [todos, setTodos] = useState<any>('')
+  const [text, setText] = useState<string>('')
   console.log(todos)
-  const todoDeleteHandler = (todoId: string) => {
-    setTodos((prevTodos) => {
-      return prevTodos.filter((todo) => todo.id !== todoId)
-    })
+
+  const submitTodo = () => {
+    setTodos(text)
+    setText('')
   }
-  const closeModal = () => {
-    setOpenModal(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const textHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value)
   }
+
   return (
     <ModalContainer>
       <InputBox>
-        <NewTodo onAddTodo={todoAddHandler} />
+        <div>
+          <input
+            className="input"
+            placeholder="입력"
+            value={text}
+            onChange={textHandler}
+            ref={inputRef}
+          />
+          <button className="submit" onClick={submitTodo}>
+            submit
+          </button>
+        </div>
       </InputBox>
-      <div>
-        <Todolist items={todos} onDeleteTodo={todoDeleteHandler} />
-      </div>
-      <button onClick={closeModal}>close</button>
+      <ClsoeButton onClick={onClickModal}>close</ClsoeButton>
     </ModalContainer>
   )
 }
@@ -41,7 +44,7 @@ export default AddModal
 
 const ModalContainer = styled.div`
   height: 100%;
-  
+
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -49,4 +52,9 @@ const ModalContainer = styled.div`
 `
 const InputBox = styled.div`
   display: flex;
+`
+const ClsoeButton = styled.button`
+  position: absolute;
+  top: 18%;
+  left: 65%;
 `
