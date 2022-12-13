@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useRef, useState } from 'react'
 import styled from 'styled-components'
 
-export interface TodosProps {
+interface TodosProps {
   todos: boolean
   onClickModal: () => void
 }
