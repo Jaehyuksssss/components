@@ -6,7 +6,7 @@ interface TodosProps {
   onClickModal: () => void
 }
 const AddModal = ({ onClickModal }: TodosProps) => {
-  const [todos, setTodos] = useState<any>('')
+  const [todos, setTodos] = useState<string>('')
   const [text, setText] = useState<string>('')
   console.log(todos)
 
@@ -33,6 +33,7 @@ const AddModal = ({ onClickModal }: TodosProps) => {
           <button className="submit" onClick={submitTodo}>
             submit
           </button>
+          <div>{todos}</div>
         </div>
       </InputBox>
       <ClsoeButton onClick={onClickModal}>close</ClsoeButton>
